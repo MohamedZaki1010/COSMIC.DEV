@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Space-themed Design System - Cosmic Portfolio */
+
+@layer base {
+  :root {
+    /* Space Base Colors */
+    --space-void: 240 10% 3%;
+    --space-deep: 243 23% 8%;
+    --space-surface: 244 27% 12%;
+    --space-elevated: 245 25% 16%;
+    
+    /* Cosmic Text Colors */
+    --cosmic-white: 0 0% 98%;
+    --cosmic-gray: 220 13% 69%;
+    --cosmic-muted: 218 11% 45%;
+    
+    /* Neon Accent Colors */
+    --neon-cyan: 180 100% 50%;
+    --neon-purple: 270 100% 70%;
+    --neon-pink: 320 100% 70%;
+    --neon-green: 120 100% 60%;
+    --neon-blue: 220 100% 70%;
+    
+    /* Glow Variants */
+    --glow-cyan: 180 100% 50%;
+    --glow-purple: 270 100% 70%;
+    --glow-pink: 320 100% 70%;
+    
+    /* Semantic Design Tokens */
+    --background: var(--space-void);
+    --foreground: var(--cosmic-white);
+    
+    --card: var(--space-surface);
+    --card-foreground: var(--cosmic-white);
+    
+    --popover: var(--space-elevated);
+    --popover-foreground: var(--cosmic-white);
+    
+    --primary: var(--neon-cyan);
+    --primary-foreground: var(--space-void);
+    
+    --secondary: var(--space-surface);
+    --secondary-foreground: var(--cosmic-white);
+    
+    --muted: var(--space-elevated);
+    --muted-foreground: var(--cosmic-muted);
+    
+    --accent: var(--neon-purple);
+    --accent-foreground: var(--space-void);
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: var(--cosmic-white);
+    
+    --border: var(--space-elevated);
+    --input: var(--space-surface);
+    --ring: var(--neon-cyan);
+    
+    /* Cosmic Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(var(--neon-cyan) / 0.2), hsl(var(--neon-purple) / 0.2));
+    --gradient-nebula: linear-gradient(45deg, hsl(var(--neon-purple) / 0.3), hsl(var(--neon-pink) / 0.3));
+    --gradient-aurora: linear-gradient(90deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple)), hsl(var(--neon-pink)));
+    
+    /* Shadows & Glows */
+    --glow-sm: 0 0 20px hsl(var(--glow-cyan) / 0.3);
+    --glow-md: 0 0 40px hsl(var(--glow-cyan) / 0.4);
+    --glow-lg: 0 0 60px hsl(var(--glow-cyan) / 0.5);
+    --shadow-cosmic: 0 10px 40px -10px hsl(var(--space-void) / 0.5);
+    
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsl(var(--neon-cyan) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--neon-purple) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 90%, hsl(var(--neon-pink) / 0.03) 0%, transparent 50%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-orbitron;
+  }
+}
+
+@layer components {
+  /* Cosmic Button Variants */
+  .btn-cosmic {
+    @apply bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 text-cosmic-white backdrop-blur-sm;
+    @apply hover:from-cyan-500/30 hover:to-purple-500/30 hover:border-cyan-500/50 hover:shadow-[0_0_20px_hsl(var(--glow-cyan)/0.5)];
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .btn-neon {
+    @apply bg-transparent border-2 border-cyan-500 text-cyan-500;
+    @apply hover:bg-cyan-500 hover:text-space-void hover:shadow-[0_0_30px_hsl(var(--glow-cyan)/0.6)];
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  /* Glass Morphism Effects */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-strong {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+  
+  /* Glow Effects */
+  .glow-cyan {
+    box-shadow: var(--glow-sm);
+  }
+  
+  .glow-cyan-md {
+    box-shadow: var(--glow-md);
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--glow-purple) / 0.4);
+  }
+  
+  /* Text Gradients */
+  .text-gradient {
+    background: var(--gradient-aurora);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Starfield Animation */
+  .starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(var(--glow-cyan) / 0.2); }
+    to { box-shadow: 0 0 30px hsl(var(--glow-cyan) / 0.8); }
+  }
+}
